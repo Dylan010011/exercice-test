@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="jumbotron mt-3">
+        
+        <h1 class="display-3">Hello, world!</h1>
+        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <hr class="my-4">
+        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{{ path('ads_index') }}" role="button">Nos annonces</a>
+        </p>
+
+    </div> 
+
+    <h2 class="h1 mt-3 mb-4">Nos appartement stars !</h2>
+
+    <div class="row">
+        <div class="col">
+            <div class="card mb-3">
+                <h3 class="card-header">3 chambres, 49&euro; / nuit</h3>
+                <div class="card-body">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, sit explicabo ipsam sequi omnis harum officiis et a quae tempora!</p>
+                </div>
+                <img style="height: 200px; width: 100%; display: block;" src="http://placehold.it/1000x400" alt="Card image">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-secondary">Lire la suite</a>
+                </div>
+                               
+                
+            </div>
+        </div>
+        <div class="col">
+            <div class="card mb-3">
+                <h3 class="card-header">3 chambres, 49&euro; / nuit</h3>
+                <div class="card-body">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, sit explicabo ipsam sequi omnis harum officiis et a quae tempora!</p>
+                </div>
+                <img style="height: 200px; width: 100%; display: block;" src="http://placehold.it/1000x400" alt="Card image">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-secondary">Lire la suite</a>
+                </div>
+                
+                
+
+            </div>
+        </div>
+        <div class="col">
+            <div class="card mb-3">
+                <h3 class="card-header">3 chambres, 49&euro; / nuit</h3>
+                <div class="card-body">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, sit explicabo ipsam sequi omnis harum officiis et a quae tempora!</p>
+                </div>
+                <img style="height: 200px; width: 100%; display: block;" src="http://placehold.it/1000x400" alt="Card image">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-secondary">Lire la suite</a>
+                </div>
+                
+                
+
+            </div>
+        </div>
+    </div>
+
+    <h2 class="h1 mt-3 mb-4">Nos propriétaires stars !</h2>
+
+    <div class="row">
+        <div class="col">
+            <div class="card border-secondary mb-3">
+                <div class="card-body">
+                    <h4 class="card-title">Jack Sparrow</h4>
+
+                    <hr>
+
+                    <div class="card-text">
+                        <img src="http://placehold.it/64x64" alt="Avatar" class="float-left mr-3">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, recusandae?</p>
+                        <a href="#" class="btn btn-success float-right">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card border-secondary mb-3">
+                <div class="card-body">
+                    <h4 class="card-title">Jack Sparrow</h4>
+
+                    <hr>
+
+                    <div class="card-text">
+                        <img src="http://placehold.it/64x64" alt="Avatar" class="float-left mr-3">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, recusandae?</p>
+                        <a href="#" class="btn btn-success float-right">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+{% endblock %}
