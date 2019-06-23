@@ -1,0 +1,22 @@
+{% set url = path('view', {slug: annonce.slug}) %}
+
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card-header text-center">
+                {{ annonce.rooms }} Chambres, <strong>{{ annonce.price }}&euro; / nuit</strong>
+            </div>
+                        
+            <a href="{{ url }}">
+                <img style="height: 200px; width: 100%; display: block;" src="{{ annonce.coverImage }}" alt="Card image">
+            </a>
+            <div class="card-body">
+                <h4 class="card-title">
+                    {{ annonce.title }}
+                </h4>
+                        
+                <p class="card-text">{{ annonce.introduction }}</p>
+                        
+                <a href="{{ url }}" class="btn btn-secondary">Voir l'annonce</a>
+            </div>          
+        </div>
+    </div>

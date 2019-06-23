@@ -49,18 +49,23 @@
 
         </div>
         <div class="col">
+            {% set auth = annonce.author %}
             <div class="row">
-                <div class="col-4">
-                    <img src="http://placehold.it/64x64" alt="Avatar">
+                <div class="col-3">
+                 
+                    <a href="{{ path('user_show', {slug: auth.slug} )}}">
+                        <img src="{{ auth.picture }}" class="avatar avatar-medium" alt="Avatar de {{ auth.fullName }}">
+                    </a>
+  
                 </div>
                 <div class="col">
-                    <h3>Jack Sparrow</h3>
-                    <span class="badge badge-primary">3 annonces</span>
+                    <a href="{{ path('user_show', {slug: auth.slug} )}}">
+                        <h3>{{ auth.fullName }}</h3>
+                    </a>
+                    <span class="badge badge-primary">{{ auth.ads | length }} annonces</span>
                 </div>
             </div>
-           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque quis possimus officiis aliquid non earum voluptatem. Delectus ea enim ratione.</p>
-           <p>Tempora molestias, soluta aspernatur natus dicta iste ab repudiandae vel tempore rem maxime aliquid aliquam unde reiciendis? Impedit, sequi similique!</p>
-           <p>Praesentium, enim eaque. Deserunt placeat tenetur unde temporibus dolorem reiciendis harum beatae quibusdam atque incidunt. Quasi consequuntur ipsam vitae facilis!</p>
+            {{ auth.description | raw }}
         </div>
     </div>
 </div>

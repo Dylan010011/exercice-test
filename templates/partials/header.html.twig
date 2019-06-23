@@ -13,14 +13,33 @@
                 <li class="nav-item">
                     <a href="{{ path('ads_index') }}" class="nav-link">Annonces</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ path('new_ads') }}" class="nav-link">Créer une annonce</a>
-                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li>
-                    <a class="nav-link" href="#">Mon Compte !</a>
-                </li>
+                {% if app.user %}
+                    <li class="nav-item dropdown">
+                        <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle" id="accountDropdownLink">
+                            <img src="{{app.user.picture}}" class="avatar avatar-mini" alt="Avatar de {{app.user.fullName}}">
+                            {{app.user.fullName}}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledBy="accountDropdownLink">
+                            <a href="{{ path('new_ads') }}" class="dropdown-item">Créer une annonce</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="{{ path('account_index') }}" class="dropdown-item">Mon compte</a>
+                            <a href="{{ path('edit_user') }}" class="dropdown-item">Modifier mon profil</a>
+                            <a href="{{ path('edit_password') }}" class="dropdown-item">Modifier mon mot de passe</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="{{ path('account_logout') }}" class="dropdown-item">Déconnexion</a>
+                        </div>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('new_user') }}">Inscription</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('account_login') }}">Connexion</a>
+                    </li>
+                {% endif %}
+                    
             </ul>
             
         </div>
