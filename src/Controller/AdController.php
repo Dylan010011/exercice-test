@@ -79,12 +79,10 @@ class AdController extends AbstractController
      */
     public function view(Ad $ad) {
 
-        $user = $this->getUser();
 
         return $this->render('ad/view.html.twig', [
 
-            'annonce' => $ad,
-            'user' => $user
+            'annonce' => $ad
 
         ]);
 
