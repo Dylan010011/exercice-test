@@ -9,8 +9,11 @@ use App\Repository\AdRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdController extends AbstractController
@@ -32,6 +35,7 @@ class AdController extends AbstractController
 
     /**
      * @Route("/ads/new", name="new_ads")
+     * @IsGranted("ROLE_USER")
      */
     public function new(Request $request, ObjectManager $manager) {
 
@@ -75,10 +79,12 @@ class AdController extends AbstractController
      */
     public function view(Ad $ad) {
 
+        $user = $this->getUser();
 
         return $this->render('ad/view.html.twig', [
 
-            'annonce' => $ad
+            'annonce' => $ad,
+            'user' => $user
 
         ]);
 
@@ -87,6 +93,7 @@ class AdController extends AbstractController
 
     /**
      * @Route("/ads/{slug}/edit", name="edit")
+     * @Security("is_granted('ROLE_USER') and user === ad.getAuthor()", message="Cette annonce ne vous appartient pas, vous ne pouvez pas la modifier")
      */
     public function edit(Ad $ad, Request $request, ObjectManager $manager) {
 
@@ -122,5 +129,20 @@ class AdController extends AbstractController
 
     }
 
+
+    /**
+     * @Route("/ads/{slug}/delete", name="ads_delete")
+     * @Security("is_granted('ROLE_USER') and user == ad.getAuthor()", message="Vous n'avez pas le droit d'acceder à cette ressource")
+     */
+    public function delete(Ad $ad, ObjectManager $manager) {
+
+        $manager->remove($ad);
+        $manager->flush();
+
+        $this->addFlash('success', "L'annonce <strong>{$ad->getTitle()}</strong> a bien été supprimée");
+
+        return $this->redirectToRoute('ads_index');
+
+    }
 
 }

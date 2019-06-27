@@ -12,6 +12,10 @@
             <strong>{{ annonce.rooms }}</strong> pour <strong>{{ annonce.price }}&euro;</strong> par nuit
         </p>
         <a href="#" class="btn btn-primary">Réserver</a>
+        {% if app.user and app.user == annonce.author %}
+            <a href="{{ path('edit', {'slug': annonce.slug}) }}" class="btn btn-secondary">Modifier l'annonce</a>
+            <a href="{{ path('ads_delete', {'slug': annonce.slug}) }}" class="btn btn-danger" onclick="return confirm(`Etes vous sur de vouloir supprimer l'annonce : {{annonce.title}} ?`)">Supprimer l'annonce</a>
+        {% endif %}
     </div>
 </div>
 

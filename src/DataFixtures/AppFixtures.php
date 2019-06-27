@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Ad;
 use Faker\Factory;
+use App\Entity\Role;
 use App\Entity\User;
 use App\Entity\Image;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -26,15 +27,32 @@ class AppFixtures extends Fixture
         
         $faker = Factory::create('fr-FR');
 
-        //Nous gérons les utilisateurs
+        //Nous gérons les rôles
+        $adminRole = new Role();
+        $adminRole->setTitle('ROLE_ADMIN');
+        $manager->persist($adminRole);
 
+        $adminUser = new User();
+        $adminUser->setFirstName('Jack')
+                  ->setLastName('Sparrow')
+                  ->setEmail('jacksparrow@yahoo.fr')
+                  ->setHash($this->encoder->encodePassword($adminUser, 'password'))
+                  ->setPicture('https://vignette.wikia.nocookie.net/pirates/images/e/ea/DMTNT_Jack_Sparrow_cropped.png/revision/latest?cb=20170507052033')
+                  ->setIntroduction($faker->sentence())
+                  ->setDescription('<p>' . join('</p><p>', $faker->paragraphs(3)) . '</p>')
+                  ->addUserRole($adminRole);
+
+            $manager->persist($adminUser);
+        
+
+        //Nous gérons les utilisateurs
         $users = [];
         $genres = ['male', 'female'];
 
         for($i = 1; $i < 11; $i++) {
 
             $user = new User();
-
+            
             $genre = $faker->randomElement($genres);
             $firstName = $faker->firstName($genre);
             $lastName = $faker->lastName;
@@ -53,14 +71,13 @@ class AppFixtures extends Fixture
                     ->setIntroduction($faker->sentence())
                     ->setDescription('<p>' . join('</p><p>', $faker->paragraphs(3)) . '</p>')
                     ->setHash($hash)
-                    ->setPicture($picture);
+                    ->setPicture($picture)
+                    ->getRoles();
 
                 $manager->persist($user);
             
             $users[] = $user;
         }
-
-
 
         //Nous gérons les annonces
         for($i = 1; $i < 31; $i++) {
